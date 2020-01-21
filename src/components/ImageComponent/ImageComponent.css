@@ -1,0 +1,33 @@
+.gallery__image {
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: imageAnimation 5s;
+    animation-fill-mode: forwards;
+}
+
+.gallery__image img {
+    height: inherit;
+    width: inherit;
+    position: absolute;
+    transition: transform 1s;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 500px){
+    .gallery__image {
+        height: 100px;
+        width: 100px;
+    }
+}
+
+@keyframes imageAnimation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

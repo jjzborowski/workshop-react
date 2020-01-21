@@ -26,7 +26,6 @@ module.exports = {
                     'style-loader',
                     'css-loader',
                 ],
-                exclude: /node_modules/,
             },
         ],
     },

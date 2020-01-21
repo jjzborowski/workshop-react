@@ -1,11 +1,124 @@
-import React from 'react';
+import {
+    apiGetImages,
+    apiRemoveImageById,
+    apiRemoveImages,
+    apiSetImage,
+} from 'common/api';
+import {
+    PICSUM_URL,
+    random,
+} from 'common/constants';
+import Button from 'components/ButtonComponent/ButtonComponent';
+import React, {
+    useEffect,
+    useState,
+} from 'react';
+import GalleryCell from '../GalleryCellComponent/GalleryCellComponent';
+import Input from '../InputComponent/InputComponent';
+import './GalleryComponent.css';
 
 const GalleryComponent = props => {
-    return (<div>test</div>);
+    const [images, setImages] = useState({});
+    const [generatedAmount, setGeneratedAmount] = useState(0);
+
+    const getImages = () => {
+        apiGetImages()
+            .then(response => {
+                if (response) {
+                    const newImages = {};
+                    Object.values(response)
+                        .forEach(image => {
+                            if (!images[image.id]) {
+                                newImages[image.id] = image;
+                            }
+                        });
+                    setImages({ ...images, ...newImages });
+                }
+            });
+    };
+
+    const renderImages = () => {
+        return Object.entries(images)
+            .map(([id, image]) => <GalleryCell
+                key={ id }
+                id={ id }
+                content={ image }
+                onRemove={ removeImageById }
+            />);
+    };
+
+    const getGeneratedAmount = event => setGeneratedAmount(event.target.value);
+
+    const generateImages = () => {
+        const newImages = {};
+        for (let i = 0; i < (
+            generatedAmount || 5
+        ); i++) {
+            let id = random(1, 1000)
+                .toString();
+            let imageData = {
+                id,
+                src: `${ PICSUM_URL }id/${ id }/200/200`,
+            };
+            newImages[id] = imageData;
+
+            apiSetImage(imageData)
+                .then(response => {
+                    console.log('setImage', response);
+                });
+        }
+
+        setImages({ ...images, ...newImages });
+    };
+
+    const removeImageById = (imageId) => {
+        const confirmation = confirm('Do you want to remove this image?');
+        if (confirmation) {
+            apiRemoveImageById(imageId)
+                .then(() => {
+                    const updatedImages = { ...images };
+                    delete updatedImages[imageId];
+                    setImages(updatedImages);
+                });
+        }
+    };
+
+    const removeImages = () => {
+        const confirmation = confirm('Do you want to remove all images?');
+        if (confirmation) {
+            apiRemoveImages()
+                .then(() => {
+                    setImages({});
+                });
+        }
+    };
+
+    useEffect(() => {
+        getImages();
+    }, []);
+
+    return <div className="gallery">
+        <div className="gallery__panel">
+            <Input
+                placeholder="Amount of generated images..."
+                onChangeHandler={ getGeneratedAmount }
+            />
+            <Button
+                content="Generate images"
+                onClickHandler={ generateImages }
+            />
+            <Button
+                content="Clear gallery"
+                onClickHandler={ removeImages }
+            />
+        </div>
+        <div className="gallery__container">
+            { renderImages() }
+        </div>
+    </div>;
 };
 
 export default GalleryComponent;
-
 
 // import {
 //     apiGetImages,
