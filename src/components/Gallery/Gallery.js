@@ -8,16 +8,16 @@ import {
     PICSUM_URL,
     random,
 } from 'common/constants';
-import Button from 'components/ButtonComponent/ButtonComponent';
+import Button from 'components/Button/Button';
 import React, {
     useEffect,
     useState,
 } from 'react';
-import GalleryCell from '../GalleryCellComponent/GalleryCellComponent';
-import Input from '../InputComponent/InputComponent';
-import './GalleryComponent.css';
+import GalleryCell from '../GalleryCell/GalleryCell';
+import Input from '../Input/Input';
+import './Gallery.css';
 
-const GalleryComponent = props => {
+const Gallery = props => {
     const [images, setImages] = useState({});
     const [generatedAmount, setGeneratedAmount] = useState(0);
 
@@ -118,7 +118,7 @@ const GalleryComponent = props => {
     </div>;
 };
 
-export default GalleryComponent;
+export default Gallery;
 
 // import {
 //     apiGetImages,
@@ -136,13 +136,13 @@ export default GalleryComponent;
 //     GalleryImagesTypes,
 //     InputComponentType,
 // } from 'common/interfaces';
-// import ButtonComponent from './ButtonComponent';
+// import Button from './Button';
 // import BaseComponent from './BaseComponent';
-// import GalleryCellComponent from './GalleryCellComponent';
-// import ImageComponent from './ImageComponent';
-// import InputComponent from './InputComponent';
+// import GalleryCell from './GalleryCell';
+// import Image from './Image';
+// import Input from './Input';
 //
-// export default class GalleryComponent extends BaseComponent implements GalleryComponentType {
+// export default class Gallery extends BaseComponent implements GalleryComponentType {
 //     images: GalleryImagesTypes;
 //     component: HTMLElement;
 //     galleryPanel: HTMLElement;
@@ -173,19 +173,19 @@ export default GalleryComponent;
 //
 //         // define input
 //
-//         this.input = new InputComponent({
+//         this.input = new Input({
 //             id: 'imageAmountInput',
 //             target: this.galleryPanel,
 //         });
 //
 //         // define buttons
-//         this.generateButton = new ButtonComponent({
+//         this.generateButton = new Button({
 //             id: 'generateButton',
 //             target: this.galleryPanel,
 //             content: 'Generate images',
 //             onClickHandler: this.generateImages,
 //         });
-//         this.clearButton = new ButtonComponent({
+//         this.clearButton = new Button({
 //             id: 'clearButton',
 //             target: this.galleryPanel,
 //             content: 'Clear gallery',
@@ -206,7 +206,7 @@ export default GalleryComponent;
 //                 if (response) {
 //                     for (let [id, image] of Object.entries(response)) {
 //                         if (!this.images[id]) {
-//                             this.images[id] = new ImageComponent({
+//                             this.images[id] = new Image({
 //                                 id: id,
 //                                 target: this.component,
 //                                 content: image,
@@ -222,7 +222,7 @@ export default GalleryComponent;
 //         Object.values(this.images)
 //             .forEach(imageComponent => {
 //                 if (!document.getElementById(imageComponent.id)) {
-//                     new GalleryCellComponent({
+//                     new GalleryCell({
 //                         id: imageComponent.id,
 //                         target: this.galleryContainer,
 //                         content: imageComponent,
@@ -241,7 +241,7 @@ export default GalleryComponent;
 //             };
 //
 //             if (!this.images[id]) {
-//                 this.images[id] = new ImageComponent({
+//                 this.images[id] = new Image({
 //                     id: id,
 //                     target: this.component,
 //                     content: imageData,

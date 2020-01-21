@@ -1,7 +1,7 @@
 import React from 'react';
-import './ImageComponent.css';
+import './Image.css';
 
-const ImageComponent = props => {
+const Image = props => {
     const { src } = props;
 
     return <div className="gallery__image">
@@ -12,11 +12,11 @@ const ImageComponent = props => {
     </div>;
 };
 
-export default ImageComponent;
+export default Image;
 
 // import BaseComponent from './BaseComponent';
 //
-// export default class ImageComponent extends BaseComponent {
+// export default class Image extends BaseComponent {
 //     constructor(data) {
 //         super(data);
 //         this.title = data.content.id;

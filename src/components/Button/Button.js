@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './ButtonComponent.css';
+import './Button.css';
 
 const BaseComponent = props => {
     const { content, onClickHandler } = props;
@@ -19,7 +19,7 @@ export default BaseComponent;
 
 // import BaseComponent from './BaseComponent';
 //
-// export default class ButtonComponent extends BaseComponent {
+// export default class Button extends BaseComponent {
 //     constructor(props) {
 //         super(props);
 //         this.initTemplate(props);

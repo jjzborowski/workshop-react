@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './InputComponent.css';
+import './Input.css';
 
-const InputComponent = props => {
+const Input = props => {
     const { placeholder, onChangeHandler } = props;
 
     return <input
@@ -12,11 +12,11 @@ const InputComponent = props => {
     />;
 };
 
-export default InputComponent;
+export default Input;
 
 // import BaseComponent from './BaseComponent';
 //
-// export default class InputComponent extends BaseComponent {
+// export default class Input extends BaseComponent {
 //     constructor(props) {
 //         super(props);
 //         this.initTemplate(props.placeholder);

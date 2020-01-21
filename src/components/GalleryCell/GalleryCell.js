@@ -1,8 +1,8 @@
 import React from 'react';
-import Image from '../ImageComponent/ImageComponent';
-import './GalleryCellComponent.css';
+import Image from '../Image/Image';
+import './GalleryCell.css';
 
-const GalleryCellComponent = props => {
+const GalleryCell = props => {
     const { id, content, onRemove } = props;
 
     return <div
@@ -22,11 +22,11 @@ const GalleryCellComponent = props => {
     </div>;
 };
 
-export default GalleryCellComponent;
+export default GalleryCell;
 
 // import BaseComponent from './BaseComponent';
 //
-// export default class GalleryCellComponent extends BaseComponent {
+// export default class GalleryCell extends BaseComponent {
 //     constructor(props) {
 //         super(props);
 //         this.initTemplate(props);
